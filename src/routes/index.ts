@@ -21,8 +21,10 @@ router.get("/", async (req, res) => {
 router.get("/users/:id", async (req, res) => {
   try {
     const id = req.params.id;
+    const user = await User.findById(id);
+    if (!user) throw "not found";
     res.render("user", {
-      user: await User.findById(id),
+      user,
       posts: await Post.find({ authorId: id })
     })
   } catch(e) {

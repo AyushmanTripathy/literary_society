@@ -6,7 +6,7 @@
 </section>
 
 <section class="section">
-  <% for (const post of posts) { %>
+  <% for (let i = posts.length - 1, post = posts[i]; i > - 1; post = posts[--i]) { %>
     <div class="post">
       <h3> <%- post.title %> </h3>
       <p class="postContent"> <%- post.content.replaceAll("\n", "<br>") %> </p>
@@ -15,6 +15,9 @@
         <p> 
           <img class="profile" src="/static/icons/love.svg" alt="Likes ">
           <%- post.likes %>
+        </p>
+        <p class="postDate">
+          <%- post.createdAt.toLocaleDateString() %>
         </p>
       </div>
     </div>
