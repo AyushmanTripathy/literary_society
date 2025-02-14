@@ -1,23 +1,28 @@
 <% if (locals.isLoggedIn) { %>
-  <a href="/posts/add"> Create a Post </a>
+  <a class="linkButton" href="/posts/add"> Create a Post </a>
 <% }%>
 
-<p> Latest Posts </p>
+<section class="section">
 
 <% for (const post of posts) { %>
   <div class="post">
-    <h3> <%- post.title %> </h3>
-    <p> <%- post.content %> 
-      <strong> - <%- post.by %> </strong>
-    </p>
-    <p> 
-      <img src="/static/icons/love.svg" alt="Likes ">
-      <%- post.likes %>
-    </p>
+    <h2> <%- post.title %> </h2>
+    <p class="postContent"> <%- post.content %> </p>
 
-    <div class="author">
-      <img src="<%- post.author.picture %>" alt="pic">
-      <a href="/users/<%- post.authorId%>"> <%- post.author.name %> </a>
+    <p class="postBy">
+      - <strong><%- post.by %></strong>
+    </p>
+    <div class="postFooter">
+      <p> 
+        <img src="/static/icons/love.svg" alt="Likes ">
+        <%- post.likes %>
+      </p>
+      <div class="author">
+        <img class="profile" src="<%- post.author.picture %>" alt="pic">
+        <a href="/users/<%- post.authorId%>"> <%- post.author.name %> </a>
+      </div>
     </div>
   </div>
 <% } %>
+
+</section>

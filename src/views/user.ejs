@@ -1,17 +1,22 @@
 
-<h1> <%- user.name %> </h1>
-<p> <%- user.mail %> </p>
+<section class="section profileSection">
+  <img src="<%- user.picture %>" alt="">
+  <h1> <%- user.name %> </h1>
+  <p> <%- user.mail %> </p>
+</section>
 
-<h2> Posts </h2>
-<% for (const post of posts) { %>
-  <div class="post">
-    <h3> <%- post.title %> </h3>
-    <p> <%- post.content %> 
-      <strong> - <%- post.by %> </strong>
-    </p>
-    <p> 
-      <img src="/static/icons/love.svg" alt="Likes ">
-      <%- post.likes %>
-    </p>
-  </div>
-<% } %>
+<section class="section">
+  <% for (const post of posts) { %>
+    <div class="post">
+      <h3> <%- post.title %> </h3>
+      <p class="postContent"> <%- post.content %> </p>
+      <p class="postBy"> - <%- post.by %> </p>
+      <div class="postFooter">
+        <p> 
+          <img class="profile" src="/static/icons/love.svg" alt="Likes ">
+          <%- post.likes %>
+        </p>
+      </div>
+    </div>
+  <% } %>
+</section>

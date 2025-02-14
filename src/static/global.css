@@ -1,0 +1,139 @@
+:root {
+  --bg: black;
+  --color: white;
+}
+
+* {
+  font-family: "Montserrat", serif;
+}
+
+svg {
+  fill: var(--color);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+
+  margin: 0;
+  padding-top: 10vh;
+  background-color: var(--bg);
+  color: var(--color);
+}
+
+header {
+  position: fixed;
+  height: 10vh;
+  width: 90vw;
+
+  top: 0;
+  left: 0;
+  padding-left: 5vw;
+  padding-right: 5vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+button, input, textarea {
+  outline: none;
+  background-color: var(--bg);
+  color: var(--color);
+  border: none;
+}
+
+input {
+  border-bottom: 1px solid var(--color);
+}
+
+header div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.linkButton {
+  padding: 10px;
+  background-color: var(--color);
+  color: var(--bg);
+  border-radius: 10px;
+}
+
+.section {
+  width: 95vw;
+  max-width: 600px;
+}
+
+.profileSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profileSection h1 {
+  margin-bottom: 0;
+}
+
+.profileSection img {
+  height: 100px;
+  width: 100px;
+}
+
+.userProfile {
+  height: 60px;
+  aspect-ratio: 1;
+  border-radius: 30%;
+}
+
+.profile {
+  height: 35px;
+  aspect-ratio: 1;
+  border-radius: 30%;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+}
+
+.postContent {
+  text-align: center;
+}
+
+.postBy {
+  text-align: right;
+}
+
+.postFooter {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.postFooter p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.post .author {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 15px
+}
