@@ -9,7 +9,7 @@
   <% for (const post of posts) { %>
     <div class="post">
       <h3> <%- post.title %> </h3>
-      <p class="postContent"> <%- post.content %> </p>
+      <p class="postContent"> <%- post.content.replaceAll("\n", "<br>") %> </p>
       <p class="postBy"> - <%- post.by %> </p>
       <div class="postFooter">
         <p> 
