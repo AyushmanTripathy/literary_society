@@ -5,7 +5,7 @@ import expressLayouts from "express-ejs-layouts";
 
 const app = express();
 
-app.set("views", join(__dirname, "../views"));
+app.set("views", join(__dirname, "../src/views"));
 app.set("view engine", "ejs");
 
 app.use(expressLayouts);
