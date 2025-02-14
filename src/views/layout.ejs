@@ -5,7 +5,17 @@
   <title> Literary Society </title>
 </head>
 <body>
-  <h1> Literary Sociery </h1>
+  <header>
+    <a href="/"><h1> Literary Society </h1></a>
+    <% if (locals.isLoggedIn) { %>
+      <img src="<%- locals.details.picture %>" alt="Pic">
+      <h3> <%- locals.details.name %> </h3>
+      <a href="/auth/logout"> <img src="/static/icons/logout.svg" alt="Logout"> </a>
+    <% } else { %>
+      <a href="/auth/login"> <img src="/static/icons/login.svg" alt="Login"> </a>
+    <% } %>
+  </header>
+
   <%- body %>
 </body>
 </html>

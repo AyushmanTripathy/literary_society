@@ -9,7 +9,7 @@ app.set("views", join(__dirname, "../src/views"));
 app.set("view engine", "ejs");
 
 app.use(expressLayouts);
-app.use("/static", express.static(join(__dirname, "../static")));
+app.use("/static", express.static(join(__dirname, "../src/static")));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
