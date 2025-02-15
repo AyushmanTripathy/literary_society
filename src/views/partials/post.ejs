@@ -9,7 +9,7 @@
     </p>
     <div class="postFooter">
       <p> 
-        <% if (post.likes.some(x => x.id == locals.details.id )) { %>
+        <% if (locals.isLoggedIn && post.likes.some(x => x.id == locals.details.id )) { %>
           <img onclick="dislike(this, '<%- post.id %>')" src="/static/icons/loved.svg" alt="Dislike">
         <% } else { %>
           <img onclick="like(this, '<%- post.id %>')" src="/static/icons/love.svg" alt="Like">
