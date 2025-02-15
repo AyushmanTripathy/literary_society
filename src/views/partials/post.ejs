@@ -1,0 +1,35 @@
+  <div class="post">
+    <h2> <%- post.title %> </h2>
+    <p class="postContent">
+      <%- post.content.replaceAll("\n", "<br>") %>
+    </p>
+
+    <p class="postBy">
+      - <strong><%- post.by %></strong>
+    </p>
+    <div class="postFooter">
+      <p> 
+        <% if (post.likes.some(x => x.id == locals.details.id )) { %>
+          <img onclick="dislike(this, '<%- post.id %>')" src="/static/icons/loved.svg" alt="Dislike">
+        <% } else { %>
+          <img onclick="like(this, '<%- post.id %>')" src="/static/icons/love.svg" alt="Like">
+        <% } %>
+        <strong>
+          <%- post.likes.length %>
+        </strong>
+        <% for (const like of post.likes.slice(0, 4)) { %>
+          <a href="/users/<%- like.id %>">
+           <img src="<%- like.picture %>" class="likePic" alt="">
+          </a>
+        <% } %>
+        <% if (post.likes.length > 3) { %>
+          ...
+        <% } %>
+      </p>
+      <div class="author">
+        <img class="profile" src="<%- post.author.picture %>" alt="pic">
+        <a href="/users/<%- post.authorId%>"><%- post.author.name %> </a>
+      </div>
+    </div>
+  </div>
+

@@ -7,10 +7,6 @@
   font-family: "Montserrat", serif;
 }
 
-svg {
-  fill: var(--color);
-}
-
 body {
   display: flex;
   flex-direction: column;
@@ -135,6 +131,12 @@ form {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.likePic {
+  height: 35px;
+  width: 35px;
+  border-radius: 30%;
 }
 
 .post .author {

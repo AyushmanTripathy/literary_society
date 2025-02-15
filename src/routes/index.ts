@@ -3,6 +3,7 @@ import authRouter from "./auth";
 import Post from "../models/Post";
 import { handleError } from "../libs/errors";
 import User from "../models/User";
+import mongoose from "mongoose";
 
 const router = Router();
 
@@ -25,9 +26,9 @@ router.get("/users/:id", async (req, res) => {
     if (!user) throw "not found";
     res.render("user", {
       user,
-      posts: await Post.find({ authorId: id })
-    })
-  } catch(e) {
+      posts: await Post.find({ authorId: id }),
+    });
+  } catch (e) {
     handleError(res, e);
   }
 });
@@ -35,6 +36,49 @@ router.get("/users/:id", async (req, res) => {
 router.get("/posts/add", (req, res) => {
   if (res.locals.isLoggedIn) res.render("posts/add");
   else res.redirect("/");
+});
+
+router.post("/posts/:id/dislike", async (req, res) => {
+  if (!res.locals.isLoggedIn) {
+    res.sendStatus(401);
+    return;
+  }
+
+  try {
+    await Post.findByIdAndUpdate(req.params.id, {
+      $pull: { likes: { id: res.locals.details.id } },
+    });
+
+    res.sendStatus(200);
+  } catch (e) {
+    res.sendStatus(400);
+  }
+});
+router.post("/posts/:id/like", async (req, res) => {
+  if (!res.locals.isLoggedIn) {
+    res.sendStatus(401);
+    return;
+  }
+
+  try {
+    await Post.findOneAndUpdate(
+      { _id: req.params.id, "likes.id": { $ne: res.locals.details.id }},
+      {
+        $push: {
+          likes: {
+            id: res.locals.details.id,
+            name: res.locals.details.name,
+            picture: res.locals.details.picture,
+          },
+        },
+      }
+    );
+
+    res.sendStatus(200);
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(400);
+  }
 });
 
 router.post("/posts/add", async (req, res) => {
@@ -48,7 +92,7 @@ router.post("/posts/add", async (req, res) => {
       title: req.body.title,
       content: req.body.content,
       by: req.body.by,
-      likes: 0,
+      likes: [],
       createdAt: Date.now(),
       authorId: res.locals.details.id,
       author: {

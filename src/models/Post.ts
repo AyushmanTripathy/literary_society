@@ -17,10 +17,22 @@ const postSchema = new Schema({
     type: Date,
     required: true,
   },
-  likes: {
-    type: Number,
-    required: true,
-  },
+  likes: [
+    {
+      id: {
+        type: Types.ObjectId,
+        required: true,
+      },
+      name: {
+        type: String,
+        required: true,
+      },
+      picture: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
   authorId: {
     type: Types.ObjectId,
     required: true,

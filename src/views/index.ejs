@@ -5,26 +5,8 @@
 <section class="section">
 
 <% for (const post of posts) { %>
-  <div class="post">
-    <h2> <%- post.title %> </h2>
-    <p class="postContent">
-      <%- post.content.replaceAll("\n", "<br>") %>
-    </p>
-
-    <p class="postBy">
-      - <strong><%- post.by %></strong>
-    </p>
-    <div class="postFooter">
-      <p> 
-        <img src="/static/icons/love.svg" alt="Likes ">
-        <%- post.likes %>
-      </p>
-      <div class="author">
-        <img class="profile" src="<%- post.author.picture %>" alt="pic">
-        <a href="/users/<%- post.authorId%>"> <%- post.author.name %> </a>
-      </div>
-    </div>
-  </div>
+  <%- include("./partials/post", { post }) %>
 <% } %>
 
 </section>
+
