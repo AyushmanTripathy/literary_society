@@ -12,7 +12,7 @@ For the proposed Literary Society GIETU.
 
 ### To Be Added
 
-- [ ] Mood Board
+- [x] Mood Board
 - [ ] Quote/Post of the day
 - [ ] Movies and Book recomendation
 - [ ] Saving Posts

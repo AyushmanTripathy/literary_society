@@ -4,9 +4,10 @@
       <%- post.content.replaceAll("\n", "<br>") %>
     </p>
 
-    <p class="postBy">
-      - <strong><%- post.by %></strong>
-    </p>
+    <div class="postBy">
+      <span> <%- post.category %>, <%- post.mood %> </span>
+      <strong>- <%- post.by %></strong>
+    </div>
     <div class="postFooter">
       <p> 
         <% if (locals.isLoggedIn && post.likes.some(x => x.id == locals.details.id )) { %>

@@ -1,0 +1,49 @@
+<section class="section">
+  <h1> How's your mood today? </h1>
+
+  <p>
+  <% for (const i of moods) { %>
+  <span class="selectOption" onclick="selectMood(this, '<%- i %>')"> <%- i %> </span>
+  <% } %>
+  </p>
+</section>
+
+<section class="section" id="categorySection">
+  <h1> What would you like? </h1>
+
+  <p>
+  <% for (const i of categories) { %>
+  <span class="selectOption" onclick="selectCategory(this, '<%- i %>')"> <%- i %> </span>
+  <% } %>
+  </p>
+</section>
+
+<button class="linkButton" onclick="select()"> That's All </button>
+
+<script>
+  const moods = [], categories = [];
+  function toggle(ele) {
+    if (ele.classList.contains("selected")) {
+      ele.classList.remove("selected");
+      return true;
+    } else {
+      ele.classList.add("selected");
+      return false;
+    }
+  }
+  function selectMood(ele, index) {
+    if (toggle(ele))
+      moods.splice(moods.indexOf(index), 1);
+    else
+      moods.push(index);
+  }
+  function selectCategory(ele, index) {
+    if (toggle(ele))
+      categories.splice(categories.indexOf(index), 1);
+    else
+      categories.push(index);
+  }
+  function select() {
+    window.location.href = "/filter?mood=" + moods.join(",") + "&category=" + categories.join(",");
+  }
+</script>

@@ -1,6 +1,10 @@
-<% if (locals.isLoggedIn) { %>
-  <a class="linkButton" href="/posts/add"> Create a Post </a>
-<% }%>
+
+<section class="section indexHeader">
+  <% if (locals.isLoggedIn) { %>
+    <a class="linkButton" href="/posts/add"> Create a Post </a>
+  <% }%>
+  <a class="linkButton" href="/filter/select"> Moods & Filters </a>
+</section>
 
 <section class="section">
 
@@ -9,4 +13,3 @@
 <% } %>
 
 </section>
-

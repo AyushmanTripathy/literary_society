@@ -7,6 +7,18 @@
     <textarea id="content" name="content" cols="30" rows="10" placeholder="What's on your mind today?"></textarea>
     <label for="by"> By: </label>
     <input type="text" name="by" required>
+    <label for="category"> Category: </label>
+    <select id="category" name="category">
+      <% for (const category of categories) { %>
+      <option value="<%- category %>"> <%- category %> </option>
+      <% } %>
+    </select>
+    <label for="mood"> Mood: </label>
+    <select id="mood" name="mood">
+      <% for (const mood of moods) { %>
+      <option value="<%- mood %>"> <%- mood %> </option>
+      <% } %>
+    </select>
     <button type="submit" class="linkButton"> Confirm </button>
   </form>
 </section>

@@ -34,7 +34,7 @@ header {
   justify-content: space-between;
 }
 
-button, input, textarea {
+button, input, textarea, select {
   outline: none;
   background-color: var(--bg);
   color: var(--color);
@@ -63,6 +63,18 @@ form {
   gap: 30px;
 }
 
+.selected {
+  color: var(--bg);
+  background-color: var(--color);
+}
+
+.selectOption {
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .linkButton {
   padding: 10px;
   background-color: var(--color);
@@ -73,6 +85,12 @@ form {
 .section {
   width: 95vw;
   max-width: 600px;
+}
+
+.indexHeader {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: space-evenly;
 }
 
 .profileSection {
@@ -118,7 +136,10 @@ form {
 }
 
 .postBy {
-  text-align: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .postFooter {

@@ -1,9 +1,8 @@
 import { Router } from "express";
 import authRouter from "./auth";
-import Post from "../models/Post";
+import Post, { categories, moods } from "../models/Post";
 import { handleError } from "../libs/errors";
 import User from "../models/User";
-import mongoose from "mongoose";
 
 const router = Router();
 
@@ -17,6 +16,26 @@ router.get("/", async (req, res) => {
   } catch (e) {
     handleError(res, e);
   }
+});
+
+router.get("/filter", async (req, res) => {
+  try {
+    const filters: { [key: string]: object } = {};
+    if (req.query.mood)
+      filters["mood"] = { $in: String(req.query.mood).split(",") };
+    if (req.query.category)
+      filters["category"] = { $in: String(req.query.category).split(",") };
+
+    res.render("index", {
+      posts: await Post.find(filters).sort({ createdAt: -1 }).limit(10),
+    });
+  } catch (e) {
+    handleError(res, e);
+  }
+});
+
+router.get("/filter/select", async (req, res) => {
+  res.render("filter", { categories, moods });
 });
 
 router.get("/users/:id", async (req, res) => {
@@ -34,7 +53,11 @@ router.get("/users/:id", async (req, res) => {
 });
 
 router.get("/posts/add", (req, res) => {
-  if (res.locals.isLoggedIn) res.render("posts/add");
+  if (res.locals.isLoggedIn)
+    res.render("posts/add", {
+      moods,
+      categories,
+    });
   else res.redirect("/");
 });
 
@@ -54,6 +77,7 @@ router.post("/posts/:id/dislike", async (req, res) => {
     res.sendStatus(400);
   }
 });
+
 router.post("/posts/:id/like", async (req, res) => {
   if (!res.locals.isLoggedIn) {
     res.sendStatus(401);
@@ -62,7 +86,7 @@ router.post("/posts/:id/like", async (req, res) => {
 
   try {
     await Post.findOneAndUpdate(
-      { _id: req.params.id, "likes.id": { $ne: res.locals.details.id }},
+      { _id: req.params.id, "likes.id": { $ne: res.locals.details.id } },
       {
         $push: {
           likes: {
@@ -93,6 +117,8 @@ router.post("/posts/add", async (req, res) => {
       content: req.body.content,
       by: req.body.by,
       likes: [],
+      category: req.body.category,
+      mood: req.body.mood,
       createdAt: Date.now(),
       authorId: res.locals.details.id,
       author: {
